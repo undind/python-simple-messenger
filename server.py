@@ -13,16 +13,13 @@ password_storage = {
 }
 
 
-@app.route("/")
-def hello_method():
-    return "Hello, World!"
-
-
 @app.route("/status")
 def status_method():
     return {
         'status': True,
-        'datetime': datetime.now().strftime('%Y/%m/%d %H:%M:%S')
+        'datetime': datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
+        'messages_count': len(messages),
+        'user_count': len(password_storage)
     }
 
 
@@ -69,4 +66,5 @@ def messages_method():
     return {'messages': filtered_messages}
 
 
-app.run()
+if __name__ == '__main__':
+    app.run()
